@@ -70,12 +70,17 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.2.0)
+    connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -108,6 +113,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.1-x86_64-darwin)
       racc (~> 1.4)
+    pg (1.4.5)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -141,8 +147,16 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis-client (0.12.1)
+      connection_pool
     reline (0.3.2)
       io-console (~> 0.5)
+    ruby2_keywords (0.0.5)
+    sidekiq (7.0.3)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     sqlite3 (1.6.0-x86_64-darwin)
     thor (1.2.1)
     timeout (0.3.1)
@@ -159,8 +173,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  faraday (~> 2.7, >= 2.7.4)
+  pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  sidekiq
   sqlite3 (~> 1.4)
   tzinfo-data
 

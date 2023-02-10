@@ -1,0 +1,2 @@
+class SlackId < ApplicationRecord
+end
