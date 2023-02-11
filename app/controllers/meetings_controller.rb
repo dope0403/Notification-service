@@ -1,6 +1,3 @@
-require 'faraday'
-require 'json'
-
 class MeetingsController < ApplicationController
 #  before_action :set_meeting, only: %i[ show update destroy ]
   include MeetingsHelper

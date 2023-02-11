@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_10_195455) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_091711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_195455) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.datetime "time", precision: nil
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "employee_id"
+    t.string "employee_name"
+    t.integer "order_id"
+    t.integer "duration"
+    t.string "chef_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "employee_email"
+  end
+
+  create_table "pantries", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "employee_id"
+    t.string "employee_name"
+    t.string "chef_name"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "slack_ids", id: :serial, force: :cascade do |t|
