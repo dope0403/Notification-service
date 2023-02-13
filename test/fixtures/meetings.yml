@@ -4,10 +4,14 @@ one:
   meeting_id: 1
   employee_id: 1
   room: MyString
+  time: 2023-02-13 21:14:21
   status: 1
+  employee_email: MyString
 
 two:
   meeting_id: 1
   employee_id: 1
   room: MyString
+  time: 2023-02-13 21:14:21
   status: 1
+  employee_email: MyString
