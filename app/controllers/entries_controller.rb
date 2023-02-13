@@ -21,7 +21,11 @@ class EntriesController < ApplicationController
   end
 
   def get_slack_payload
-    puts params
+    payload = params[:payload]
+    user_response = JSON.parse(payload)["actions"][0]["text"]["text"]
+    # new_payload = JSON.decode(payload)
+    # puts new_payload.actions
+    # render json: params, status: :ok
   end
 
   def update
