@@ -7,7 +7,7 @@ module MeetingsHelper
             req.url "https://slack.com/api/users.lookupByEmail?email=#{emp_email}"
             req.headers['Authorization'] = "Bearer #{ENV["SLACK_TOKEN"]}"
         end
-        puts "\n\n" + ENV["SLACK_TOKEN"] + "\n\n"
+        
         user_details = JSON.parse(res_user.body)["user"]
         
         slack_user = SlackId.new(slack_id: user_details["id"], emp_id: emp_id, emp_name: user_details["name"])  

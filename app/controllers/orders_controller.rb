@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
 
     if order.save
-      puts order
       # create a order completion job
       OrderJob.perform_in(order.duration.seconds, order.employee_name, order.chef_name, order.order_id, order.employee_id, order.employee_email)
 
