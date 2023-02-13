@@ -30,4 +30,4 @@ module MeetingsHelper
             req.params = {"channel":user_details["slack_id"], "text": notif}
         end
     end
-end
+end 

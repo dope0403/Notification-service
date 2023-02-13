@@ -1,1 +1,9 @@
-{}
+{
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "ruby.codeCompletion": "rcodetools",
+    "ruby.format": "prettier",
+    "ruby.intellisense": "rubyLocate",
+    "solargraph.formatting": true
+}
