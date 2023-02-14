@@ -2,7 +2,6 @@ require 'faraday'
 
 module MeetingsHelper
     def get_slack_details(emp_email, emp_id)
-        #get slack user_details
         res_user = Faraday.get do |req|
             req.url "https://slack.com/api/users.lookupByEmail?email=#{emp_email}"
             req.headers['Authorization'] = "Bearer #{ENV["SLACK_TOKEN"]}"
