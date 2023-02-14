@@ -22,6 +22,51 @@ class EntriesController < ApplicationController
 
   def entry_approval
     entry = Entry.new(employee_id: params[:employee_id], employee_email: params[:employee_email], message: params[:message])
+    if entry.save
+      user_details = SlackId.find_by(emp_id: params[:employee_id])
+      if user_details.nil?
+        user_details = get_slack_details(params[:employee_email], params[:employee_id])
+        user_details["slack_id"] = user_details["id"]
+      end
+
+      message =  [
+          {
+            "type": "header",
+            "text": {
+              "type": "plain_text",
+              "text": "#{params[:message]}",
+              "emoji": true
+            }
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "emoji": true,
+                  "text": "Approve"
+                },
+                "style": "primary",
+                "value": "click_me_123"
+              },
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "emoji": true,
+                  "text": "Reject"
+                },
+                "style": "danger",
+                "value": "click_me_123"
+              }
+            ]
+          }
+	    ]
+      send_slack_notif_entry(user_details["slack_id"], message)
+      render json: entry, status: :created, location: entry
+    end
   end
 
   def get_slack_payload

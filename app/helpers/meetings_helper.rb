@@ -7,7 +7,8 @@ module MeetingsHelper
             req.headers['Authorization'] = "Bearer #{ENV["SLACK_TOKEN"]}"
         end
         
-        user_details = JSON.parse(res_user.body)["user"]
+        user_details = JSON.parse(res_user.body)
+        user_details = user_details["user"]
         slack_user = SlackId.new(slack_id: user_details["id"], emp_id: emp_id, emp_name: user_details["name"])
         slack_user.save
 
