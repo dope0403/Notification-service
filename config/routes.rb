@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :meetings, only: [:create, :update]
   resource :orders, only: [:create]
 
+  post '/entry-approval', to: "entries#entry_approval"
   post '/', to: "entries#get_slack_payload"
 end

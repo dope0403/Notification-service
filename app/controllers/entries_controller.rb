@@ -20,6 +20,10 @@ class EntriesController < ApplicationController
     end
   end
 
+  def entry_approval
+    entry = Entry.new(employee_id: params[:employee_id], employee_email: params[:employee_email], message: params[:message])
+  end
+
   def get_slack_payload
     payload = params[:payload]
     user_response = JSON.parse(payload)["actions"][0]["text"]["text"]
