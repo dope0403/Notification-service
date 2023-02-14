@@ -46,6 +46,7 @@ RUN echo -e 'development:\n\
   username: root\n\
   password: password\n' > config/database.yml
 
+RUN echo "hello"
 
 # run migrations
 RUN bundle install
