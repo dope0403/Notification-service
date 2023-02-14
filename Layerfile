@@ -49,10 +49,16 @@ RUN echo -e 'development:\n\
 
 # run migrations
 RUN bundle install
-#RUN bundle exec rake db:migrate
+RUN bundle exec rake db:drop db:create db:schema:load
 RUN bundle exec rake db:setup
+RUN curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+RUN sudo apt-get update
+RUN sudo apt-get install redis
 
 # Start the server
 RUN BACKGROUND rails server --binding 0.0.0.0
-RUN BACKGROUND bundle exec sidekiq -C ./config/sidekiq.yml
+RUN BACKGROUND sudo apt install redis
+# RUN BACKGROUND sudo systemctl restart redis-server
+RUN BACKGROUND bundle exec sidekiq -C config/sidekiq.yml
 EXPOSE WEBSITE localhost:3000
