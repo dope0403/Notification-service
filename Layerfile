@@ -58,7 +58,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install redis
 
 # Start the server
-ENV SLACK_TOKEN=xoxb-4790519192513-4775001508069-CM6vIrNVe3IxrLINAhA9IqFS
+ENV SLACK_TOKEN=xoxb-4790519192513-4775001508069-MlMXPk3kFFnI6qBn2yRUIVIQ
 
 RUN BACKGROUND rails server --binding 0.0.0.0
 RUN BACKGROUND sudo apt install redis
